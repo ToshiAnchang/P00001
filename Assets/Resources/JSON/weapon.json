@@ -1,0 +1,49 @@
+{
+  "weapon": [
+    {
+      "key": "pistol",
+      "price": "5",
+      "name": "Pistol",
+      "info": "Pistol---",
+      "damage": "1",
+      "bulletCount": "10",
+      "reloadingSec": "2"
+    },
+    {
+      "key": "shotgun",
+      "price": "10",
+      "name": "Shotgun",
+      "info": "Shotgun---",
+      "damage": "2",
+      "bulletCount": "4",
+      "reloadingSec": "3"
+    },
+    {
+      "key": "rocket",
+      "price": "15",
+      "name": "Rocket",
+      "info": "Rocket---",
+      "damage": "5",
+      "bulletCount": "2",
+      "reloadingSec": "3"
+    },
+    {
+      "key": "ak47",
+      "price": "20",
+      "name": "Ak47",
+      "info": "Ak47---",
+      "damage": "3",
+      "bulletCount": "20",
+      "reloadingSec": "2.5"
+    },
+    {
+      "key": "sniper",
+      "price": "25",
+      "name": "Sniper",
+      "info": "Sniper---",
+      "damage": "5",
+      "bulletCount": "5",
+      "reloadingSec": "3"
+    }
+  ]
+}
