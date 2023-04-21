@@ -19,7 +19,7 @@ public class ShopMgr : MonoBehaviour
 
     [SerializeField] GameObject shopCanvasObj;
 
-    public ItemData[] itemDatas;
+    //public ItemData[] itemDatas;
     public ItemPanel[] itemPanels;
     [SerializeField] Button closeBtn;
 
@@ -43,8 +43,8 @@ public class ShopMgr : MonoBehaviour
     {
         for (int i = 0; i < itemPanels.Length; i++)
         {
-            if (i >= itemDatas.Length) break;
-            itemPanels[i].SetItemData(itemDatas[i]);
+            if (i >= DataMgr.Instance.itemDatas.Length) break;
+            itemPanels[i].SetItemData(DataMgr.Instance.itemDatas[i]);
         }
     }
 

@@ -43,12 +43,12 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         AddWealth(WealthType.gold, PlayerPrefs.GetInt("gold", 0));
         
-        for(int i=0; i < ShopMgr.Instance.itemDatas.Length; i++)
+        for(int i=0; i < DataMgr.Instance.itemDatas.Length; i++)
         {
-            string result = PlayerPrefs.GetString(ShopMgr.Instance.itemDatas[i].key);
+            string result = PlayerPrefs.GetString(DataMgr.Instance.itemDatas[i].key);
             if (result == "true")
             {
-                AddPlayerItem(ShopMgr.Instance.itemDatas[i].key.ToString());
+                AddPlayerItem(DataMgr.Instance.itemDatas[i].key.ToString());
             }
         }
 

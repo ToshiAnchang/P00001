@@ -5,7 +5,8 @@ using Boomlagoon.JSON;
 
 public class DataMgr : MonoBehaviour
 {
-    [SerializeField] ItemData[] itemDatas;
+    [SerializeField] public ItemData[] itemDatas;
+    [SerializeField] public Dictionary<string, ItemData> itemDataDic = new Dictionary<string, ItemData>();
 
     private static DataMgr instance;
     public static DataMgr Instance
@@ -27,27 +28,33 @@ public class DataMgr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /*PlayerPrefs.SetInt("gold", 100);
+        /*
+        PlayerPrefs.SetInt("gold", 100);
         PlayerPrefs.SetString("item0", "true");
         PlayerPrefs.SetString("item1", "false");
-        Debug.Log("저장완료");*/
-        /*
-                int _gold = PlayerPrefs.GetInt("gold", 0);
-                string _item0 = PlayerPrefs.GetString("item0", "false");
-                string _item1 = PlayerPrefs.GetString("item1", "false");
-
-                Debug.Log("gold:" + _gold);
-                Debug.Log("item0:" + _item0);
-                Debug.Log("item1:" + _item1);
+        Debug.Log("저장완료");
         */
+        /*
+        int _gold = PlayerPrefs.GetInt("gold", 0);
+        string _item0 = PlayerPrefs.GetString("item0", "false");
+        string _item1 = PlayerPrefs.GetString("item1", "false");
+        Debug.Log("gold:" + _gold);
+        Debug.Log("item0:" + _item0);
+        Debug.Log("item1:" + _item1);
+        */
+        
         TextAsset tAsset = Resources.Load<TextAsset>("JSON/weapon");
         JSONObject jObj = JSONObject.Parse(tAsset.text);
 
-        /*Debug.Log(jObj["weapon"]);
-        Debug.Log(jObj.GetArray("weapon"));*/
+        /*
+        Debug.Log(jObj["weapon"]);
+        Debug.Log(jObj.GetArray("weapon"));
+        */
+        /* JSON 데이터를 사용하기 편하게 배열로 바꾸는법
+        JSONArray jArr1 = jObj.GetArray("weapon");
+        JSONArray jArr2 = JSONArray.Parse(jObj["weapon"].ToString());
+        */
 
-        /*JSONArray jArr1 = jObj.GetArray("weapon");
-        JSONArray jArr2 = JSONArray.Parse(jObj["weapon"].ToString());*/
         JSONArray jArr3 = jObj["weapon"].Array;
 
         itemDatas = new ItemData[jArr3.Length];
@@ -63,18 +70,24 @@ public class DataMgr : MonoBehaviour
             itemDatas[i].damage = float.Parse(jArr3[i].Obj.GetString("damage"));
             itemDatas[i].bulletCount = int.Parse(jArr3[i].Obj.GetString("bulletCount"));
             itemDatas[i].reloadingSec = float.Parse(jArr3[i].Obj.GetString("reloadingSec"));
+
+            itemDataDic.Add(itemDatas[i].key, itemDatas[i]);
         }
     }
 
     public ItemData GetItemData(string key)
     {
-        for (int i = 0; i < itemDatas.Length; i++)
-        {
-            if(itemDatas[i] != null)
-            return itemDatas[i];
-        }
+        /*        for (int i = 0; i < itemDatas.Length; i++)
+                {
+                    if(itemDatas[i].key == key) // itemDatas[i].equals.....로도 가능
+                    return itemDatas[i];
+                }
+                return null;*/
 
-        return null;
+        if (!itemDataDic.ContainsKey(key)){
+            return null;
+        }
+        return itemDataDic[key];
     }
 
 }
